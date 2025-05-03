@@ -1,26 +1,34 @@
-# Screen-Maestro
-ScreenMaestro: Lightweight Open-Source Digital Signage Manager (PHP + MySQL).  Manage screens, upload media, and control digital signage easily — no subscriptions, no bloat.
+# Screen Maestro Installation
+
+Welcome to Screen Maestro — the simple, self-hosted signage manager.
+
+## 🚀 Quick Start
+
+1. **Extract the ZIP contents** directly into your `public_html` or web root.  
+   _Don't bury it in a subfolder — everything should land in the root unless you know what you're doing._
+
+2. **Visit the setup tool in your browser**:  
+   If you extracted into the root:
+   ```
+   http://www.yourdomain.com/setup/index.html
+   ```
+   If you put it in a subfolder (like `/signage/`), use:
+   ```
+   http://www.yourdomain.com/signage/setup/index.html
+   ```
+
+   📌 You’ll need to adjust file paths in `config.php` and URLs accordingly if you go the subfolder route.
+
+3. **Set permissions on the `uploads` folder**:  
+   - Recommended: `755`  
+   - If you have permission errors, try `777` — _but be aware this is less secure._
+
+## 🔒 Final Step
+
+After setup is complete, **delete the entire `/setup` folder** to protect your server.
 
 ---
 
-## ✨ Features
+Need help? Open an issue on GitHub or yell at the sky. Up to you.
 
-- 🎯 Manage multiple screens from a clean dashboard
-- 📷 Upload and assign images/videos (JPG, PNG, WebP, MP4, WebM)
-- ⚡ Pure PHP + MySQL (lightweight, fast, no heavy frameworks)
-- 📱 Mobile and desktop admin friendly
-- 🔒 100% Self-Hosted — you own your server, your screens, your system
-- 💵 No subscriptions, fees, or "premium" features
-- 🛡️ Open-source and community-driven development
-
----
-
-## 🚀 Installation
-
-1. Clone or download this repository.
-2. Create a MySQL database on your server.
-3. Import the provided SQL schema (`database/schema.sql`) into your database.
-4. Copy `config.sample.php` to `config.php` and fill in your database credentials.
-5. Set correct permissions on the `/public/uploads/` folder:
-   ```bash
-   chmod 755 public/uploads/
+– Mr. Frizby

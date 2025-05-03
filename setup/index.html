@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Screen Maestro - Installation Guide</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #111;
+      color: #fff;
+      margin: 0;
+      padding: 0;
+      line-height: 1.6;
+    }
+    header {
+      background: #1a2b2b;
+      color: #fff;
+      padding: 2rem 1rem;
+      text-align: center;
+      border-bottom: 4px solid #5de6d6;
+    }
+    .story-box {
+      background: #1a2b2b;
+      padding: 1rem;
+      border-left: 4px solid #5de6d6;
+      margin: 1rem 2rem;
+      border-radius: 8px;
+    }
+    .button-group {
+      text-align: center;
+      margin: 2rem 0;
+    }
+    .btn {
+      display: inline-block;
+      margin: 0.5rem;
+      padding: 0.75rem 1.5rem;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: bold;
+      color: #fff;
+    }
+    .btn.download { background: #28a745; }
+    .btn.github { background: #24292e; }
+    .btn.help { background: #17a2b8; }
+    .btn.donate { background: #ffc107; color: #000; }
+    .btn:hover { opacity: 0.85; }
+    nav {
+      background: #000;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1rem;
+      padding: 0.5rem;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    nav a {
+      color: #00ffff;
+      text-decoration: none;
+      padding: 0.5rem 1rem;
+      border: 1px solid #00ffff;
+      border-radius: 5px;
+    }
+    nav a:hover {
+      background: #00ffff;
+      color: #000;
+    }
+    section {
+      padding: 2rem;
+    }
+    h2 {
+      color: #5de6d6;
+    }
+    code, pre {
+      background: #222;
+      padding: 0.5rem;
+      border-radius: 5px;
+      display: block;
+      overflow-x: auto;
+      color: #0ff;
+    }
+    .simple-box {
+      background: #222;
+      padding: 1rem;
+      border-radius: 8px;
+      margin-top: 1rem;
+    }
+    .alert {
+      background: #440000;
+      padding: 1rem;
+      border-radius: 6px;
+      margin-top: 1rem;
+      color: #ff6666;
+    }
+    footer {
+      text-align: center;
+      padding: 1rem;
+      font-size: 0.9rem;
+      color: #888;
+      border-top: 1px solid #333;
+      background: #000;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>🛠️ Screen Maestro</h1>
+    <p>Your lightweight, open-source digital signage dashboard</p>
+    <div class="story-box">
+      <strong>Why this exists:</strong>
+      <p>Screen Maestro was created by Mr. Frizby — a sandwich-slinger turned SaaS-developer — who got sick of bloated digital signage platforms. After too many "Why can’t I just upload and go?" moments, this lightweight system was born. Clean, fast, no filler.</p>
+    </div>
+  </header>
+
+  <div class="button-group">
+    <a href="/downloads/screenmaestroV1.0.zip" class="btn download">⬇️ Download</a>
+    <a href="https://github.com/Frizbys/Screen-Maestro" class="btn github" target="_blank">💻 GitHub</a>
+        <a href="https://cash.app/$payfrizbys" class="btn donate" target="_blank">💸 Donate</a>
+  </div>
+
+  <nav>
+    <a href="#upload">Upload</a>
+    <a href="#extract">Extract</a>
+    <a href="#database">Database</a>
+    <a href="#import">Import SQL</a>
+    <a href="#config">Config</a>
+    <a href="#admin">Admin Setup</a>
+    <a href="#cleanup">Cleanup</a>
+    <a href="#help">Help</a>
+  </nav>
+
+  <section id="upload">
+    <h2>Step 1: Upload (Simple)</h2>
+    <p>Use cPanel → File Manager → Navigate to <code>public_html</code> → Upload the ZIP file there.</p>
+    <h3>Detailed (Web Devs)</h3>
+    <pre>scp Screen_Maestro_V_1.0.zip user@yourserver:/var/www/html</pre>
+    <p>Or via command line: <code>curl -O https://screenmaestro.com/downloads/screenmaestroV1.0.zip</code></p>
+  </section>
+
+  <section id="extract">
+    <h2>Step 2: Extract</h2>
+    <p>Right-click → Extract. Don’t put it in a subfolder.</p>
+    <h3>Detailed (Web Devs)</h3>
+    <pre>cd /var/www/html
+unzip Screen_Maestro_V_1.0.zip</pre>
+  </section>
+
+  <section id="database">
+  <h2>Step 3: Create Database</h2>
+  <p><strong>✅ Reminder:</strong> If you're following this guide step-by-step, you've already created the database. You don't need to do it again.</p>
+  <p>Just make sure you know the database name, user, and password — you'll use them in the next step to connect your app to the backend.</p>
+  <h3>Detailed</h3>
+  <p>Use MySQL® Databases in cPanel or CLI to create a DB and assign user privileges if not already done.</p>
+</section>
+
+  <section id="import">
+    <h2>Step 4: Import SQL</h2>
+    <p>phpMyAdmin → Select DB → Import → Choose <code>database.sql</code></p>
+    <div class="alert">
+      This SQL file has no sample data — so you don’t have to clean up demo junk later.
+    </div>
+  </section>
+
+  <section id="config">
+    <h2>Step 5: Configure</h2>
+    <p>Edit <code>config.php</code> and set your DB credentials:</p>
+    <pre>$db_host = 'localhost';
+$db_name = 'your_db_name';
+$db_user = 'your_db_user';
+$db_pass = 'your_db_password';</pre>
+  </section>
+
+  <section id="admin">
+  <h2>Step 6: Create Admin</h2>
+  <p>The <code>/setup/</code> folder contains two tools you need to complete setup:</p>
+  <ul>
+    <li><code>admin_usr.php</code> — creates your first admin user in the database</li>
+    <li><code>create_hash.php</code> — helps you generate a hashed password if you prefer manual DB entry</li>
+  </ul>
+  <p>You can launch these directly in your browser:</p>
+  <div class="button-group">
+    <a href="/setup/admin_usr.php" class="btn help">➕ Create Admin User</a>
+    <a href="/setup/create_hash.php" class="btn help">🔐 Generate Password Hash</a>
+  </div>
+  <p class="alert">⚠️ Important: Edit both files before running! Set your DB connection info and desired credentials.</p>
+  <p>Once you've created your admin account, <strong>delete the entire <code>/setup</code> folder</strong> to protect your system.</p>
+</section>
+
+  <section id="cleanup">
+    <h2>Step 7: Cleanup</h2>
+    <p>Delete the <code>/setup/</code> folder immediately after account creation. Do not skip this.</p>
+  </section>
+
+  <section id="help">
+    <h2>FAQ / Help</h2>
+    <ul>
+      <li><strong>Nothing shows up?</strong> Check you extracted into the correct folder.</li>
+      <li><strong>500 Error?</strong> Your config or permissions may be incorrect.</li>
+      <li><strong>Login not working?</strong> Make sure the admin script ran and DB is properly set up.</li>
+    </ul>
+
+    <h3>Default Admin Login</h3>
+    <p>If you ran the setup script using this example:</p>
+    <pre>$username = 'admin';
+$password = 'YOURPASSWORDHERE';</pre>
+    <p>Then you’ll log in with:</p>
+    <pre>Username: admin
+Password: YOURPASSWORDHERE</pre>
+    <p>Login URL: <code>/login.php</code></p>
+  </section>
+
+  <footer>
+    Screen Maestro was created by Mr. Frizby. Between sandwiches.
+  </footer>
+</body>
+</html>
