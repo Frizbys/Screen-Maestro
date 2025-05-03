@@ -3,9 +3,9 @@
 
 // Database connection settings
 $host = '127.0.0.1';
-$db   = 'cdn-1'; // your database name
-$user = 'cdn-1_usr'; // your database user
-$pass = 'Rockinsox2025$'; // your database password
+$db   = 'dbname'; // your database name
+$user = 'dbusr'; // your database user
+$pass = 'dbpassword'; // your database password
 
 // Set up PDO connection
 try {
